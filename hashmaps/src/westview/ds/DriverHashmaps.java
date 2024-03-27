@@ -11,7 +11,8 @@ public class DriverHashmaps {
 		// TODO Auto-generated method stub
 		
 		HashMap s = new HashMap<String, Integer>();
-		HashMap c = new HashMap<String, Integer>();
+		HashMap SC = new HashMap<String, String>();
+		HashMap c = new HashMap<HashMap, Integer>();
 		
 		HashMap m = new HashMap<String, String>();
 		
@@ -41,17 +42,14 @@ public class DriverHashmaps {
 		
 		System.out.println(m2.get("Jiya"));
 		
-		
+		String state = "";
+	    String city = "";
 		
 		//Get the scanner going to read the csv file
 		try {
 
 		    Scanner scanner = new Scanner(new File("covid417.csv"));
-		    HashMap confirmed = new HashMap<String, Integer>();
-		    //HashMap states = new HashMap<String, ArrayList<City>>();
-		    //ArrayList<City> cities = new ArrayList<City>();
-		    String state = "";
-		    String city = "";
+
 		    int countS = 0;
 		    int countC = 0;
 		    
@@ -59,9 +57,10 @@ public class DriverHashmaps {
 		    
 		    while(scanner.hasNextLine()) {
 		    	String[] row = scanner.nextLine().split(",");
-		    	//City city = new City();
 
+		    	
 		    	countS = Integer.valueOf(row[2]);
+		    	countC = Integer.valueOf(row[2]);
 		    	
 		    	//hashmap with total confirmed for each state/city
 		    	// check if already has state/city, if it does update count then replace
@@ -77,22 +76,17 @@ public class DriverHashmaps {
 		    	}
 		    	
 		    	//counts confirmed cases total for each city
-		    	if(c.containsKey(row[0])) {
-		    		countC += (int)c.get(row[0]);
+		    	if(c.containsKey(row[0]) && row[1].equals(state)) {
 		    		c.replace(row[0], countC);
 		    	}
 		    	else {
 		    		c.put(row[0], countC);
 		    	}
 		    	
-		    	
-		    	//System.out.println(scanner.next());
+
 		    	
 		    }
 		    scanner.close();
-		    
-		    //System.out.println("total entries for CA confirmed: " + countCA);
-		    //System.out.println("total confirmed for CA: " +confirmed.get("California"));
 		    
 		    //User input 
 		    while(true){
