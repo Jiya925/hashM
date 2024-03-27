@@ -10,6 +10,9 @@ public class DriverHashmaps {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		HashMap s = new HashMap<String, Integer>();
+		HashMap c = new HashMap<String, Integer>();
+		
 		HashMap m = new HashMap<String, String>();
 		
 		//adding entries to our map ("dictionary")
@@ -47,65 +50,63 @@ public class DriverHashmaps {
 		    HashMap confirmed = new HashMap<String, Integer>();
 		    //HashMap states = new HashMap<String, ArrayList<City>>();
 		    //ArrayList<City> cities = new ArrayList<City>();
-		    //String state = "";
-		    int countCA = 0;
-		    int count = 0;
+		    String state = "";
+		    String city = "";
+		    int countS = 0;
+		    int countC = 0;
 		    
 		    scanner.nextLine();
 		    
 		    while(scanner.hasNextLine()) {
 		    	String[] row = scanner.nextLine().split(",");
-		    	City city = new City();
+		    	//City city = new City();
+
+		    	countS = Integer.valueOf(row[2]);
 		    	
-		    	//count confirmed for CA
-		    	if(row[1].equals("California")){
-		    		countCA++;
-		    	}
-		    	
-		    	count = Integer.valueOf(row[2]);
-		    	//hashmap with total confirmed for each state
-		    	// check if already has state, if it does update count then replace
+		    	//hashmap with total confirmed for each state/city
+		    	// check if already has state/city, if it does update count then replace
 		    	//if not put new one
-		    	if(confirmed.containsKey(row[1])) {
-		    		count += (int)confirmed.get(row[1]);
-		    		confirmed.replace(row[1], count);
+		    	
+		    	//counts confirmed cases total for states
+		    	if(s.containsKey(row[1])) {
+		    		countS += (int)s.get(row[1]);
+		    		s.replace(row[1], countS);
 		    	}
 		    	else {
-		    		confirmed.put(row[1], count);
+		    		s.put(row[1], countS);
 		    	}
 		    	
+		    	//counts confirmed cases total for each city
+		    	if(c.containsKey(row[0])) {
+		    		countC += (int)c.get(row[0]);
+		    		c.replace(row[0], countC);
+		    	}
+		    	else {
+		    		c.put(row[0], countC);
+		    	}
 		    	
-		    	
-		    	//city.setName(row[0]);
-		    	//city.setConfirmed(Integer.valueOf(row[2]));
-		    	//city.setDeaths(Integer.valueOf(row[3]));
-		    	//city.setRecovered(Integer.valueOf(row[4]));
-		    	//city.setActive(Integer.valueOf(row[5]));
-		    	//if(row[0].equals(state)) {
-		    		
-		    	//}
-		    	//states.put(row[1], city);
-		    	//state = row[1];
 		    	
 		    	//System.out.println(scanner.next());
 		    	
 		    }
 		    scanner.close();
 		    
-		    System.out.println("total entries for CA confirmed: " + countCA);
-		    System.out.println("total confirmed for CA: " +confirmed.get("California"));
+		    //System.out.println("total entries for CA confirmed: " + countCA);
+		    //System.out.println("total confirmed for CA: " +confirmed.get("California"));
 		    
 		    //User input 
-		    
+		    while(true){
+		    	
 		    Scanner userInput = new Scanner(System.in);
 		    System.out.println("Please enter a State");
 		    
-		    String state = userInput.nextLine();
+		    state = userInput.nextLine();
+		    System.out.println("The confirmed number of cases in " +state+" is : " + s.get(state));
 		    
 		    System.out.println(". \n Please enter a city: \n");
 		    
-		    
-		    while(true){
+		    city = userInput.nextLine();
+		    System.out.println("The confirmed number of cases in " + city +", "+state+" is : " + c.get(city));
 		    	
 		    }
 		    
