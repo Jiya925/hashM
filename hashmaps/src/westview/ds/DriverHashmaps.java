@@ -11,8 +11,7 @@ public class DriverHashmaps {
 		// TODO Auto-generated method stub
 		
 		HashMap s = new HashMap<String, Integer>();
-		HashMap SC = new HashMap<String, String>();
-		HashMap c = new HashMap<HashMap, Integer>();
+		HashMap c = new HashMap<String, Integer>();
 		
 		HashMap m = new HashMap<String, String>();
 		
@@ -76,11 +75,11 @@ public class DriverHashmaps {
 		    	}
 		    	
 		    	//counts confirmed cases total for each city
-		    	if(c.containsKey(row[0]) && row[1].equals(state)) {
-		    		c.replace(row[0], countC);
+		    	if(c.containsKey(row[0])) {
+		    		c.replace(row[0] +", " + row[1], countC);
 		    	}
 		    	else {
-		    		c.put(row[0], countC);
+		    		c.put(row[0] +", " + row[1], countC);
 		    	}
 		    	
 
@@ -95,12 +94,14 @@ public class DriverHashmaps {
 		    System.out.println("Please enter a State");
 		    
 		    state = userInput.nextLine();
+		    state = state.substring(0, 1).toUpperCase() + state.substring(1).toLowerCase();
 		    System.out.println("The confirmed number of cases in " +state+" is : " + s.get(state));
 		    
 		    System.out.println(". \n Please enter a city: \n");
 		    
 		    city = userInput.nextLine();
-		    System.out.println("The confirmed number of cases in " + city +", "+state+" is : " + c.get(city));
+		    city = city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+		    System.out.println("The confirmed number of cases in " + city +", "+state+" is : " + c.get(city+", "+state));
 		    	
 		    }
 		    
