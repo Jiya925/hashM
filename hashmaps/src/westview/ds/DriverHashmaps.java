@@ -66,20 +66,20 @@ public class DriverHashmaps {
 		    	//if not put new one
 		    	
 		    	//counts confirmed cases total for states
-		    	if(s.containsKey(row[1])) {
-		    		countS += (int)s.get(row[1]);
-		    		s.replace(row[1], countS);
+		    	if(s.containsKey(row[1].toLowerCase())) {
+		    		countS += (int)s.get(row[1].toLowerCase());
+		    		s.replace(row[1].toLowerCase(), countS);
 		    	}
 		    	else {
-		    		s.put(row[1], countS);
+		    		s.put(row[1].toLowerCase(), countS);
 		    	}
 		    	
 		    	//counts confirmed cases total for each city
-		    	if(c.containsKey(row[0])) {
-		    		c.replace(row[0] +", " + row[1], countC);
+		    	if(c.containsKey(row[0].toLowerCase())) {
+		    		c.replace(row[0].toLowerCase() +", " + row[1].toLowerCase(), countC);
 		    	}
 		    	else {
-		    		c.put(row[0] +", " + row[1], countC);
+		    		c.put(row[0].toLowerCase() +", " + row[1].toLowerCase(), countC);
 		    	}
 		    	
 
@@ -93,14 +93,15 @@ public class DriverHashmaps {
 		    Scanner userInput = new Scanner(System.in);
 		    System.out.println("Please enter a State");
 		    
-		    state = userInput.nextLine();
-		    state = state.substring(0, 1).toUpperCase() + state.substring(1).toLowerCase();
+		    state = userInput.nextLine().toLowerCase();
+		    //state = state.substring(0, 1).toUpperCase() + state.substring(1).toLowerCase();
+		    
 		    System.out.println("The confirmed number of cases in " +state+" is : " + s.get(state));
 		    
 		    System.out.println(". \n Please enter a city: \n");
 		    
-		    city = userInput.nextLine();
-		    city = city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
+		    city = userInput.nextLine().toLowerCase();
+		    //city = city.substring(0, 1).toUpperCase() + city.substring(1).toLowerCase();
 		    System.out.println("The confirmed number of cases in " + city +", "+state+" is : " + c.get(city+", "+state));
 		    	
 		    }
